@@ -1,12 +1,13 @@
 [core]
 	editor = nvim
 
-[url "git@github.com:helarteDeProgrmar/"]
+[url "git@github.com:rubengpb/"]
   insteadOf = "gh:"
 
 [user]
-	email = ruben.gbenito@alumnos.upm.es
+	email = rubengarciapatosbenito@gmail.com
 	name = Rubén García-Patos Benito
+
 [merge]
 	tool = nvimdiff
 	conflictstyle = diff3
@@ -16,5 +17,13 @@
 [includeIf "gitdir:~/work/**"]
   path = ~/work/.gitconfig
 
+[includeIf "gitdir:~/work/**"]
+  path = ~/aura/.gitconfig
+
 [init]
 	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
