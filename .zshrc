@@ -100,6 +100,8 @@ alias cenv='python -m venv .venv'
 alias denv='rm -r -I -v .venv'
 alias bat=batcat
 alias xsell='xsel --clipboard'
+alias n='nvim'
+alias j='just'
 
 # Shell integrations
 [ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
@@ -150,3 +152,16 @@ if [ ! -f "$FLAG_FILE" ] || [ "$(date +%Y-%m-%d)" != "$(cat $FLAG_FILE)" ]; then
 else
     echo "Task already ran today" >> "$LOGS_FILE"
 fi
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/home/rgpb/.opam/opam-init/init.zsh' ]] || source '/home/rgpb/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
+
+[ -f "/home/rgpb/.ghcup/env" ] && . "/home/rgpb/.ghcup/env" # ghcup-env
+# opencode
+export PATH=/home/rgpb/.opencode/bin:$PATH
