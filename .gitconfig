@@ -17,7 +17,7 @@
 [includeIf "gitdir:~/work/**"]
   path = ~/work/.gitconfig
 
-[includeIf "gitdir:~/work/**"]
+[includeIf "gitdir:~/aura/**"]
   path = ~/aura/.gitconfig
 
 [init]
