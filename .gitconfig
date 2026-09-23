@@ -14,9 +14,6 @@
 [push]
 	autoSetupRemote = true
 
-[includeIf "gitdir:~/work/**"]
-  path = ~/work/.gitconfig
-
 [includeIf "gitdir:~/aura/**"]
   path = ~/aura/.gitconfig
 
