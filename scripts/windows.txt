@@ -38,6 +38,7 @@ play-sound=true
 current=uint32 0
 mru-sources=[('xkb', 'es'), ('xkb', 'us')]
 sources=[('xkb', 'es'), ('xkb', 'us')]
+xkb-options=['caps:swapescape', 'lv3:ralt_switch', 'compose:rctrl']
 
 [interface]
 color-scheme='prefer-dark'
