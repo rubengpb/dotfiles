@@ -101,6 +101,7 @@ alias denv='rm -r -I -v .venv'
 alias bat=batcat
 alias xsell='xsel --clipboard'
 alias n='nvim'
+alias cl='claude'
 alias j='just'
 
 # Shell integrations
