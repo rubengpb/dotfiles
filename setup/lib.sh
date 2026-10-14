@@ -38,6 +38,16 @@ packages() {
   if [[ "$EXTRAS" == 1 ]]; then read_list "$1-extras"; fi
 }
 
+# Runs a command as the GitHub account that owns $1 when that account is
+# logged in to gh: with several accounts, the active one may not see another
+# owner's private repos. git uses it too, through the gh credential helper.
+as_owner() {
+  local owner="$1" token
+  shift
+  token="$(gh auth token --user "$owner" 2>/dev/null || true)"
+  if [[ -n "$token" ]]; then GH_TOKEN="$token" "$@"; else "$@"; fi
+}
+
 # Installers that "add themselves to your shell" write through the ~/.zshrc
 # symlink into this repo. Take a snapshot before them, check it after.
 zshrc_snapshot() { sha1sum "$DOTFILES/.zshrc" 2>/dev/null; }

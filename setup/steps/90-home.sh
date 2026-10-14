@@ -11,5 +11,5 @@ fi
 
 while read -r repo dest; do
   dest="${dest/#\~/$HOME}"
-  if [[ -d "$dest/.git" ]]; then ok "$repo"; else run gh repo clone "$repo" "$dest"; fi
+  if [[ -d "$dest/.git" ]]; then ok "$repo"; else run as_owner "${repo%%/*}" git clone "https://github.com/$repo.git" "$dest"; fi
 done < <(read_list repos)
