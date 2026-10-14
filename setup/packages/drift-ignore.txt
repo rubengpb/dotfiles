@@ -1,0 +1,2 @@
+# dnf packages drift.sh should not report: installed by hand once, but not
+# worth tracking. Not installed by bootstrap. One name per line.

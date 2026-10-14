@@ -1,0 +1,3 @@
+# Global npm packages (prefix ~/.node, set in .npmrc).
+
+markdownlint-cli

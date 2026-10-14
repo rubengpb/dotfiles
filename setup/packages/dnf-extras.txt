@@ -1,0 +1,25 @@
+# Occasional dnf packages: only installed with `bootstrap.sh --extras`.
+
+# --- network & systems
+nmap
+telnet
+ftp
+sendmail
+
+# --- OCaml (steps/70-languages.sh runs `opam init` when opam is present)
+ocaml
+ocaml-compiler-libs
+ocaml-findlib
+opam
+m4
+
+# --- other languages & tools
+dotnet-sdk-10.0
+z3
+
+# --- full LaTeX (~4000 packages, several GB)
+texlive-scheme-full
+
+# --- misc
+xorg-x11-server-Xorg
+cowsay

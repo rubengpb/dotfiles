@@ -1,0 +1,85 @@
+# dnf packages installed on every machine. One per line, exact package name.
+# Occasional tools go in dnf-extras.txt (installed with --extras).
+# Packages from third-party repos need the repo in steps/10-repos.sh.
+
+# --- shell & terminal
+zsh
+stow
+tmux
+fzf
+zoxide
+alacritty
+vim-enhanced
+neovim
+tree-sitter-cli       # nvim-treesitter parsers
+ripgrep               # telescope live grep
+xclip
+htop
+fastfetch
+w3m
+nushell
+rlwrap
+jq                    # scripts/claude-tui.sh, GNOME extension installer
+unzip
+
+# --- git
+git
+git-lfs
+gh
+
+# --- productivity
+just
+task
+timew
+pass
+
+# --- build
+make
+cmake
+ninja-build
+gcc
+gcc-c++
+clang
+autoconf
+automake
+
+# --- languages (erlang/elixir via asdf, haskell via ghcup: steps/70-languages.sh)
+golang
+nodejs
+nodejs-npm
+yarnpkg
+java-25-openjdk-headless
+openssl-devel         # erlang build (asdf)
+ncurses-devel         # erlang build (asdf)
+perl                  # ghcup
+gmp-devel             # ghcup
+libffi                # ghcup
+xz                    # ghcup
+tar                   # ghcup
+
+# --- database clients
+postgresql
+valkey-compat-redis   # redis-cli
+
+# --- containers & network (third-party repos)
+docker-ce
+docker-ce-cli
+containerd.io
+docker-buildx-plugin
+docker-compose-plugin
+tailscale
+
+# --- documents
+latexmk
+zathura
+zathura-pdf-poppler
+graphviz
+ghostscript
+
+# --- desktop
+flameshot
+drawing
+code                  # VS Code (third-party repo)
+sublime-text          # third-party repo
+librewolf             # third-party repo
+google-android-emoji-fonts

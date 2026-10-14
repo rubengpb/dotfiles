@@ -1,0 +1,7 @@
+# Flatpak apps (installed from Flathub). One application ID per line.
+
+com.brave.Browser
+com.google.Chrome
+com.spotify.Client
+com.mattjakeman.ExtensionManager
+org.kde.okular
