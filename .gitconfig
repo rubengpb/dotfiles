@@ -14,8 +14,8 @@
 [push]
 	autoSetupRemote = true
 
-[includeIf "gitdir:~/aura/**"]
-  path = ~/aura/.gitconfig
+[includeIf "gitdir:~/AURA/**"]
+  path = ~/AURA/.gitconfig
 
 [init]
 	defaultBranch = main
