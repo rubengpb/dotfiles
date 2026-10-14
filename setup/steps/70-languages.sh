@@ -9,7 +9,11 @@ fi
 if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
   # shellcheck source=/dev/null
   source "$HOME/.asdf/asdf.sh"
-  while read -r plugin version; do
+  # Read the whole list first: in a `while read` loop, asdf install would eat
+  # the remaining lines from stdin and only the first entry would be installed.
+  mapfile -t entries < <(read_list asdf)
+  for entry in "${entries[@]}"; do
+    read -r plugin version <<<"$entry"
     asdf plugin list 2>/dev/null | grep -qx "$plugin" || run asdf plugin add "$plugin"
     if asdf list "$plugin" 2>/dev/null | tr -d ' *' | grep -qx "$version"; then
       ok "$plugin $version"
@@ -17,7 +21,7 @@ if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
       log "building $plugin $version (erlang takes a while)"
       run asdf install "$plugin" "$version"
     fi
-  done < <(read_list asdf)
+  done
 fi
 
 # ghcup: non-interactive mode does not touch the shell rc unless asked to.

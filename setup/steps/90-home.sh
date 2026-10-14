@@ -9,7 +9,10 @@ if ! gh auth status >/dev/null 2>&1; then
   exit 0
 fi
 
-while read -r repo dest; do
+# Whole list first: git clone could read the next lines from stdin.
+mapfile -t entries < <(read_list repos)
+for entry in "${entries[@]}"; do
+  read -r repo dest <<<"$entry"
   dest="${dest/#\~/$HOME}"
   if [[ -d "$dest/.git" ]]; then ok "$repo"; else run as_owner "${repo%%/*}" git clone "https://github.com/$repo.git" "$dest"; fi
-done < <(read_list repos)
+done

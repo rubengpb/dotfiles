@@ -97,7 +97,7 @@ if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
     if ! asdf plugin list 2>/dev/null | grep -qx "$plugin"; then
       warn "asdf: plugin $plugin not added here, cannot check $version"
     # Captured first: grep -q closing the pipe early would fail it under pipefail.
-    elif ! grep -qxF "$version" <<<"$(asdf list all "$plugin" 2>/dev/null)"; then
+    elif ! grep -qxF "$version" <<<"$(asdf list all "$plugin" 2>/dev/null </dev/null)"; then
       fail "asdf: $plugin $version does not exist"
     fi
   done < <(read_list asdf)
@@ -107,7 +107,7 @@ fi
 section "repos: personal repos exist"
 if gh auth status >/dev/null 2>&1; then
   while read -r repo _; do
-    as_owner "${repo%%/*}" gh repo view "$repo" --json name >/dev/null 2>&1 || fail "repo $repo not found"
+    as_owner "${repo%%/*}" gh repo view "$repo" --json name </dev/null >/dev/null 2>&1 || fail "repo $repo not found"
   done < <(read_list repos)
   passed "checked"
 else
