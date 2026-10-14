@@ -60,8 +60,9 @@ for f in "$steps_dir"/*.sh; do
   name="$(step_name "$f")"
   if ((${#wanted[@]})) && [[ " ${wanted[*]} " != *" $name "* ]]; then continue; fi
   log "$name — $(sed -n '1s/^# //p' "$f")"
-  # Each step runs in its own subshell: a failure stops that step, not the rest.
-  ( set -euo pipefail; source "$f" ) || failed+=("$name")
+  # Each step runs in its own bash process: a failure stops that step, not the
+  # rest. Not a ( subshell ) under ||: bash ignores set -e inside those.
+  bash -c 'set -euo pipefail; source "$0"; source "$1"' "$SETUP/lib.sh" "$f" || failed+=("$name")
 done
 
 echo
