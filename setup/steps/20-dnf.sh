@@ -3,7 +3,9 @@
 mapfile -t wanted < <(packages dnf)
 missing=()
 for p in "${wanted[@]}"; do
-  rpm -q "$p" >/dev/null 2>&1 || missing+=("$p")
+  # --whatprovides: Fedora renames some packages and keeps the old name as an
+  # alias (nodejs is installed as nodejs22); plain rpm -q would miss them.
+  rpm -q --whatprovides "$p" >/dev/null 2>&1 || missing+=("$p")
 done
 
 if ((${#missing[@]})); then

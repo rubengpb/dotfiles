@@ -49,6 +49,7 @@ nodejs
 nodejs-npm
 yarnpkg
 java-25-openjdk-headless
+python3-pip           # not in a fresh Workstation; packages/pip.txt needs it
 openssl-devel         # erlang build (asdf)
 ncurses-devel         # erlang build (asdf)
 perl                  # ghcup
