@@ -24,6 +24,17 @@ run_sh() {
   if [[ "$DRY_RUN" == 1 ]]; then printf '    +   %s\n' "$1"; else bash -c "$1"; fi
 }
 
+# GNOME settings kept in setup/gnome/<file>.dconf: "dconf-path file". save.sh
+# writes them, the gnome step applies them, drift.sh compares them.
+GNOME_DUMPS=(
+  "/org/gnome/desktop/ desktop"
+  "/org/gnome/mutter/ mutter"                     # fixed number of workspaces
+  "/org/gnome/shell/app-switcher/ app-switcher"   # Alt+Tab: current workspace only
+  "/org/gnome/shell/extensions/ extensions"
+  "/org/gnome/settings-daemon/plugins/ settings-daemon"
+  "/org/gnome/system/ system"                     # location services
+)
+
 # Entries of setup/packages/<name>.txt without comments or blank lines.
 # Lines may carry extra fields (e.g. "erlang 27.3.4.3"); callers split them.
 read_list() {

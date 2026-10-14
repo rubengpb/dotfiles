@@ -41,14 +41,14 @@ fi
 
 # Settings. dconf load merges into the current values, so keep a full backup
 # of what was there before.
-declare -A dumps=(
-  [/org/gnome/desktop/]=desktop
-  [/org/gnome/shell/extensions/]=extensions
-  [/org/gnome/settings-daemon/plugins/]=settings-daemon
-)
 backed_up=""
-for path in "${!dumps[@]}"; do
-  file="$SETUP/gnome/${dumps[$path]}.dconf"
+for entry in "${GNOME_DUMPS[@]}"; do
+  read -r path name <<<"$entry"
+  file="$SETUP/gnome/$name.dconf"
+  if [[ ! -f "$file" ]]; then
+    warn "$path is not saved yet: run setup/gnome/save.sh on the machine whose settings you want"
+    continue
+  fi
   if [[ "$(dconf dump "$path")" == "$(cat "$file")" ]]; then
     ok "$path"
     continue
@@ -60,4 +60,5 @@ for path in "${!dumps[@]}"; do
     [[ "$DRY_RUN" == 1 ]] || ok "previous settings saved in $backed_up (restore: dconf load / < that file)"
   fi
   run_sh "dconf load '$path' < '$file'"
+  [[ "$DRY_RUN" == 1 ]] || ok "$path applied"
 done

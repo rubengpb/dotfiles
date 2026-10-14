@@ -66,8 +66,9 @@ if have gnome-shell; then
   not_in "$enabled" "$(read_list gnome-extensions)" | report "GNOME extensions: enabled, not in packages/gnome-extensions.txt"
 
   changed=""
-  for pair in /org/gnome/desktop/:desktop /org/gnome/shell/extensions/:extensions /org/gnome/settings-daemon/plugins/:settings-daemon; do
-    [[ "$(dconf dump "${pair%%:*}")" == "$(cat "$SETUP/gnome/${pair#*:}.dconf")" ]] || changed+="${pair%%:*}"$'\n'
+  for entry in "${GNOME_DUMPS[@]}"; do
+    read -r path name <<<"$entry"
+    [[ "$(dconf dump "$path")" == "$(cat "$SETUP/gnome/$name.dconf" 2>/dev/null)" ]] || changed+="$path"$'\n'
   done
   report "GNOME settings changed since the last setup/gnome/save.sh" <<<"${changed%$'\n'}"
 fi
