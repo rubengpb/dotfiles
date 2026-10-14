@@ -11,6 +11,8 @@ set -uo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 
 drift=0
+# `... | report` must run report in this shell, or drift=1 is lost in a subshell.
+shopt -s lastpipe
 
 # $1 = title, stdin = one finding per line (nothing printed if empty).
 report() {
@@ -26,19 +28,23 @@ report() {
 not_in() { grep -vxFf <(printf '%s\n' "$2") <<<"$1" || true; }
 
 # --- dnf ----------------------------------------------------------------------
-# Packages with reason "User" from every transaction except the ones that built
-# the Fedora image, still installed, kernels aside.
-ids="$(dnf history list 2>/dev/null | awk 'NR > 1 && !($2 == "dnf5" && $3 == "--config") { print $1 }')"
+# Packages with reason "User" from every transaction except the OS install
+# (the Fedora image build: "dnf5 --config ..."; the installer: no command line,
+# so the date comes second), still installed, kernels aside.
+ids="$(dnf history list 2>/dev/null |
+  awk 'NR > 1 && $2 !~ /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/ && !($2 == "dnf5" && $3 == "--config") { print $1 }')"
 # shellcheck disable=SC2086
 user_pkgs="$(dnf history info $ids 2>/dev/null |
   awk '$1 == "Install" && $3 == "User" { print $2 }' |
   sed -E 's/\.[^.]+$//; s/-[^-]+-[^-]+$//' | sort -u |
   grep -vE '^kernel' |
   while read -r p; do rpm -q "$p" >/dev/null 2>&1 && echo "$p"; done)"
-known="$(EXTRAS=1 packages dnf; read_list manual-extras | awk '{ print $1 }'; read_list drift-ignore)"
+# List entries plus the real package behind each alias (nodejs -> nodejs22).
+known="$(EXTRAS=1 packages dnf | while read -r p; do echo "$p"; rpm -q --whatprovides --qf '%{name}\n' "$p" 2>/dev/null; done
+  read_list manual-extras | awk '{ print $1 }'; read_list drift-ignore)"
 not_in "$user_pkgs" "$known" | report "dnf: installed by you, not in packages/dnf*.txt"
 
-missing="$(packages dnf | while read -r p; do rpm -q "$p" >/dev/null 2>&1 || echo "$p"; done)"
+missing="$(packages dnf | while read -r p; do rpm -q --whatprovides "$p" >/dev/null 2>&1 || echo "$p"; done)"
 report "dnf: in packages/dnf.txt but not installed here (setup/bootstrap.sh dnf)" <<<"$missing"
 
 # --- flatpak ------------------------------------------------------------------
