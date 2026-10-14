@@ -166,3 +166,7 @@ fi
 [ -f "/home/rgpb/.ghcup/env" ] && . "/home/rgpb/.ghcup/env" # ghcup-env
 # opencode
 export PATH=/home/rgpb/.opencode/bin:$PATH
+
+# >>> railway initialize >>>
+source "$HOME/.railway/env"
+# <<< railway initialize <<<
