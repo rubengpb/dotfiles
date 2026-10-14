@@ -2,8 +2,10 @@
 
 # Fedora may name the Flathub remote "flathub" or "flathub-1": look it up by URL.
 remote="$(flatpak remotes --columns=name,url | awk '$2 ~ /dl\.flathub\.org/ { print $1; exit }')"
+# System-wide installs go through sudo (kept alive by bootstrap.sh) instead of a
+# separate polkit password prompt.
 if [[ -z "$remote" ]]; then
-  run flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+  run sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   remote=flathub
 fi
 
@@ -15,7 +17,7 @@ done
 
 if ((${#missing[@]})); then
   log "installing from $remote: ${missing[*]}"
-  run flatpak install -y --noninteractive "$remote" "${missing[@]}"
+  run sudo flatpak install -y --noninteractive "$remote" "${missing[@]}"
 else
   ok "all ${#wanted[@]} apps installed"
 fi

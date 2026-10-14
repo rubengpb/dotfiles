@@ -39,8 +39,20 @@ for w in "${wanted[@]}"; do
   [[ -n "$(ls "$steps_dir"/[0-9]*-"$w".sh 2>/dev/null)" ]] || { echo "unknown step: $w (see --list)" >&2; exit 2; }
 done
 
+# Run as root, stow, fonts and every per-user tool would land in /root.
+if [[ "$EUID" -eq 0 ]]; then
+  echo "run setup/bootstrap.sh as your user, not with sudo: it asks for sudo itself, only where needed" >&2
+  exit 1
+fi
+
 if [[ "$DRY_RUN" != 1 ]]; then
+  log "sudo password (asked once, kept valid until bootstrap ends)"
   sudo -v || exit 1
+  # sudo forgets the password 5 minutes after its last use: refresh it every
+  # minute while this script lives, so long steps never ask again.
+  ( while kill -0 "$$" 2>/dev/null; do sudo -n -v 2>/dev/null; sleep 60; done ) &
+  sudo_keepalive=$!
+  trap 'kill "$sudo_keepalive" 2>/dev/null' EXIT
 fi
 
 failed=()

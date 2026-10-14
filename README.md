@@ -80,9 +80,11 @@ setup/bootstrap.sh --dry-run    # optional: see what it would do
 setup/bootstrap.sh              # add --extras for the occasional tools
 ```
 
-It asks for your sudo password at the start (again only if a long install
-outlasts sudo's timeout). If a step fails, the others still run and the summary
-tells you which ones to re-run.
+Run it as your user, never with `sudo` (it refuses: everything would land in
+`/root`). It asks for the sudo password once at the start and keeps it valid
+until it ends, so you can leave it running. Only dnf, repos, services, flatpak
+and the login shell change use sudo. If a step fails, the others still run and
+the summary tells you which ones to re-run.
 
 After the first run:
 
