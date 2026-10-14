@@ -12,3 +12,13 @@ prefs.js
 sessionstore*
 .env
 .env.*
+
+# Apps write their own data next to these stowed files: only ours are tracked.
+.claude/*
+!.claude/keybindings.json
+!.claude/statusline.sh
+!.claude/tui.json
+.local/share/gnome-shell/*
+!.local/share/gnome-shell/extensions/
+.local/share/gnome-shell/extensions/*
+!.local/share/gnome-shell/extensions/notification-keys@rgpb/
