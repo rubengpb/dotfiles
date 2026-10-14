@@ -167,6 +167,5 @@ fi
 # opencode
 export PATH=/home/rgpb/.opencode/bin:$PATH
 
-# >>> railway initialize >>>
-source "$HOME/.railway/env"
-# <<< railway initialize <<<
+# railway (setup/ installs it without letting it edit this file)
+[ -f "$HOME/.railway/env" ] && source "$HOME/.railway/env"
