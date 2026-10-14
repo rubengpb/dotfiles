@@ -1,2 +1,14 @@
 .config/herdr/*
 !.config/herdr/config.toml
+
+# Safety net: browser profile data and local secrets never belong in dotfiles.
+*.sqlite
+*.sqlite-*
+*.db
+*.mozlz4
+*.jsonlz4
+*.lz4
+prefs.js
+sessionstore*
+.env
+.env.*

@@ -1,0 +1,13 @@
+{
+  "_comment": "Overrides for Zen's own shortcuts, applied to <profile>/zen-keyboard-shortcuts.json by scripts/zen-link.sh (Zen must be closed). Layer map and reasons: KEYMAP.md. Format: shortcut id -> \"mod+mod+key\" (mods: accel, alt, shift; keys: a letter or VK_*), or null to disable.",
+  "zen-workspace-backward": "alt+h",
+  "zen-workspace-forward": "alt+l",
+  "zen-workspace-create": "alt+n",
+  "zen-compact-mode-toggle": "alt+c",
+  "zen-compact-mode-show-sidebar": "alt+s",
+  "zen-split-view-vertical": "alt+v",
+  "zen-split-view-horizontal": "alt+-",
+  "zen-split-view-grid": "alt+g",
+  "zen-split-view-unsplit": "alt+x",
+  "key_savePage": "accel+s"
+}

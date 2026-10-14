@@ -1,0 +1,55 @@
+/* Browser chrome (sidebar, tabs, url bar).
+ * Calm, minimal, dark, with a vim touch. Palette = alacritty's Catppuccin
+ * (dotfiles/.config/alacritty/alacritty.toml) so the browser and the terminal match.
+ * Overrides Zen's per-workspace gradient: every space gets the same flat colour.
+ */
+
+:root {
+  --rg-base: #1E1D2F;      /* alacritty background */
+  --rg-mantle: #19182A;    /* a step darker: sidebar */
+  --rg-surface: #2A2940;   /* hover / selected tab */
+  --rg-overlay: #6E6C7E;   /* alacritty black: borders, muted text */
+  --rg-text: #D9E0EE;      /* alacritty foreground */
+  --rg-subtext: #988BA2;   /* alacritty bright black */
+  --rg-accent: #96CDFB;    /* alacritty blue */
+  --rg-font: "0xProto Nerd Font Mono", monospace;
+
+  --zen-primary-color: var(--rg-accent) !important;
+  --toolbox-textcolor: var(--rg-text) !important;
+  --toolbar-color-scheme: dark !important;
+  --zen-colors-border: var(--rg-surface) !important;
+  --zen-urlbar-background: var(--rg-mantle) !important;
+  --zen-dialog-background: var(--rg-mantle) !important;
+  --zen-border-radius: 4px !important;
+}
+
+/* Zen sets the gradient inline from JS on these two elements; !important wins. */
+#zen-browser-background,
+#zen-toolbar-background {
+  --zen-main-browser-background: var(--rg-base) !important;
+  --zen-main-browser-background-toolbar: var(--rg-base) !important;
+  --zen-grainy-background-opacity: 0 !important;
+}
+
+/* Vim touch: the chrome speaks monospace, like the terminal. */
+#navigator-toolbox,
+#urlbar,
+.tabbrowser-tab .tab-label {
+  font-family: var(--rg-font) !important;
+  font-size: 12px !important;
+}
+
+/* Selected tab: flat surface plus a thin accent bar, like a cursor line. */
+.tabbrowser-tab[selected] .tab-background {
+  background: var(--rg-surface) !important;
+  box-shadow: inset 2px 0 0 var(--rg-accent) !important;
+}
+.tabbrowser-tab:not([selected]) .tab-label {
+  color: var(--rg-subtext) !important;
+}
+
+/* Calm: no shadows on the floating url bar and panels. */
+#urlbar[breakout-extend] .urlbar-background,
+panel {
+  box-shadow: none !important;
+}
