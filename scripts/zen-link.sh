@@ -10,6 +10,8 @@
 # ZEN_INSTALL (absolute paths).
 
 set -euo pipefail
+# die() inside $(find_zen_home) must stop the script, not just that subshell.
+shopt -s inherit_errexit
 
 repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/zen"
 
