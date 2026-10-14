@@ -39,6 +39,7 @@ dotfiles/
 ```
 setup/
 ├── bootstrap.sh          entry point: runs the steps in order
+├── check.sh              validates the lists and URLs, installs nothing
 ├── drift.sh              reports installed tools missing from the lists
 ├── lib.sh                helpers shared by the scripts
 ├── steps/                one file per step, run in numeric order
@@ -129,7 +130,8 @@ Some steps need an earlier one to have run at least once:
 
 | I want to… | Do |
 |---|---|
-| add a tool | add a line to the right `setup/packages/*.txt` |
+| add a tool | add a line to the right `setup/packages/*.txt`, then `setup/check.sh` |
+| check the lists and URLs before committing | `setup/check.sh` (installs nothing) |
 | check nothing is missing from the lists | `setup/drift.sh` |
 | keep GNOME settings I changed | `setup/gnome/save.sh`, then review `git diff setup/gnome` |
 
