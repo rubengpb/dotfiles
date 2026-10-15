@@ -16,9 +16,6 @@ ripgrep               # telescope live grep
 xclip
 htop
 fastfetch
-w3m
-nushell
-rlwrap
 jq                    # scripts/claude-tui.sh, GNOME extension installer
 unzip
 
@@ -35,23 +32,14 @@ pass
 
 # --- build
 make
-cmake
-ninja-build
 gcc
 gcc-c++
-clang
-autoconf
-automake
 
-# --- languages (erlang/elixir via asdf, haskell via ghcup: steps/70-languages.sh)
+# --- languages (haskell via ghcup: steps/70-languages.sh)
 golang
 nodejs
 nodejs-npm
-yarnpkg
-java-25-openjdk-headless
 python3-pip           # not in a fresh Workstation; packages/pip.txt needs it
-openssl-devel         # erlang build (asdf)
-ncurses-devel         # erlang build (asdf)
 perl                  # ghcup
 gmp-devel             # ghcup
 libffi                # ghcup
@@ -62,13 +50,12 @@ tar                   # ghcup
 postgresql
 valkey-compat-redis   # redis-cli
 
-# --- containers & network (third-party repos)
+# --- containers (third-party repo)
 docker-ce
 docker-ce-cli
 containerd.io
 docker-buildx-plugin
 docker-compose-plugin
-tailscale
 
 # --- documents
 latexmk
@@ -80,7 +67,4 @@ ghostscript
 # --- desktop
 flameshot
 drawing
-code                  # VS Code (third-party repo)
-sublime-text          # third-party repo
-librewolf             # third-party repo
 google-android-emoji-fonts

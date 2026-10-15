@@ -52,21 +52,22 @@ step can be re-run safely.
 
 | Step | File | What it does | Reads |
 |---|---|---|---|
-| `repos` | `10-repos.sh` | adds third-party dnf repos (Docker, Tailscale, LibreWolf, Sublime, VS Code) | |
+| `repos` | `10-repos.sh` | adds third-party dnf repos (Docker; Tailscale, LibreWolf, Sublime and VS Code are extras but their repos are always added) | |
 | `dnf` | `20-dnf.sh` | installs dnf packages | `dnf.txt` (+ `dnf-extras.txt`, `manual-extras.txt`) |
-| `services` | `25-services.sh` | enables docker and tailscaled, adds you to the docker group | |
+| `services` | `25-services.sh` | enables docker (and tailscaled with `--extras`), adds you to the docker group | |
 | `flatpak` | `30-flatpak.sh` | installs Flatpak apps from Flathub | `flatpak.txt` (+ `flatpak-extras.txt`) |
 | `dotfiles` | `40-dotfiles.sh` | inits git submodules and runs `stow .` | `.stow-local-ignore` |
 | `terminal` | `50-terminal.sh` | zsh as login shell, tmux plugins, Nerd Font and emoji font | |
-| `user-tools` | `60-user-tools.sh` | Claude Code, opencode, railway, herdr, Zen + Tridactyl; runs `claude-tui.sh` and `zen-link.sh`; pip and npm packages | `pip.txt`, `npm.txt` |
-| `languages` | `70-languages.sh` | asdf (erlang, elixir), ghcup (haskell), opam (ocaml, with extras) | `asdf.txt` |
+| `user-tools` | `60-user-tools.sh` | Claude Code, opencode, herdr, Zen + Tridactyl (railway with `--extras`); runs `claude-tui.sh` and `zen-link.sh`; pip and npm packages | `pip.txt`, `npm.txt` |
+| `languages` | `70-languages.sh` | ghcup (haskell); with `--extras`: asdf (erlang, elixir), opam (ocaml) | `asdf-extras.txt` |
 | `gnome` | `80-gnome.sh` | installs and enables GNOME extensions, applies GNOME settings | `gnome-extensions.txt`, `gnome/*.dconf` |
 | `home` | `90-home.sh` | creates `~/usrtmp ~/personal ~/work ~/studies`, clones personal repos | `repos.txt` |
 
 Files in `packages/` (the "Reads" column):
 
 - `*.txt`: installed on every machine.
-- `*-extras.txt`: occasional tools, only installed with `--extras`.
+- `*-extras.txt`: occasional tools, only installed with `--extras`: erlang/elixir
+  (asdf), OCaml, LaTeX, tailscale, VS Code, extra browsers, railway…
 - `manual-extras.txt`: `.rpm` files downloaded by hand; bootstrap only reminds you.
 - `drift-ignore.txt`: dnf packages `drift.sh` should not report.
 
@@ -81,6 +82,11 @@ setup/bootstrap.sh --dry-run    # optional: see what it would do
 setup/bootstrap.sh              # add --extras for the occasional tools
 ```
 
+Without `--extras` you get the daily setup (shell, editors, docker, Claude
+Code, Zen, haskell). `--extras` adds what a full clone of a machine needs:
+erlang/elixir via asdf, OCaml, LaTeX, tailscale, VS Code, railway and the
+occasional apps (see `setup/packages/*-extras.txt`).
+
 Run it as your user, never with `sudo` (it refuses: everything would land in
 `/root`). It asks for the sudo password once at the start and keeps it valid
 until it ends, so you can leave it running. Only dnf, repos, services, flatpak
@@ -91,7 +97,7 @@ After the first run:
 
 1. Log out and back in (zsh, docker group, GNOME extensions).
 2. `gh auth login`, then `setup/bootstrap.sh home` to clone the personal repos.
-3. `sudo tailscale up`.
+3. `sudo tailscale up` (if installed with `--extras`).
 4. Open Zen once, close it, then `setup/bootstrap.sh user-tools` (see `zen/README.md`).
 
 # 4. Load the config step by step

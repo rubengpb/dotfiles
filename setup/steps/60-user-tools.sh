@@ -9,11 +9,15 @@ install_tool() {
 
 install_tool claude   'curl -fsSL https://claude.ai/install.sh | bash'
 install_tool opencode 'curl -fsSL https://opencode.ai/install | bash -s -- --no-modify-path'
-# The installer always rewrites the shell rc of $SHELL; with sh it skips that
-# (.zshrc already loads ~/.railway/env).
-install_tool railway  'curl -fsSL https://railway.com/install.sh | SHELL=/bin/sh sh -s -- --yes'
 install_tool herdr    'curl -fsSL https://herdr.dev/install.sh | sh'
 install_tool zen      'bash <(curl -fsSL https://updates.zen-browser.app/install.sh)'
+
+# Occasional CLIs: only with --extras.
+if [[ "$EXTRAS" == 1 ]]; then
+  # The installer always rewrites the shell rc of $SHELL; with sh it skips that
+  # (.zshrc already loads ~/.railway/env).
+  install_tool railway  'curl -fsSL https://railway.com/install.sh | SHELL=/bin/sh sh -s -- --yes'
+fi
 
 # Tridactyl reads tridactylrc through its native messenger (see zen/README.md).
 if [[ -x "$HOME/.local/share/tridactyl/native_main" ]]; then

@@ -1,7 +1,9 @@
-# system services and groups (docker, tailscale)
+# system services and groups (docker; tailscale with --extras)
 
 for svc in docker tailscaled; do
   if ! systemctl list-unit-files "$svc.service" >/dev/null 2>&1; then
+    # tailscale comes from dnf-extras.txt: missing it is normal without --extras.
+    if [[ "$svc" == tailscaled && "$EXTRAS" != 1 ]]; then continue; fi
     warn "$svc is not installed (run the dnf step first)"
   elif systemctl is-enabled --quiet "$svc"; then
     ok "$svc enabled"

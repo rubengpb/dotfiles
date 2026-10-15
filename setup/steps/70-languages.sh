@@ -1,17 +1,19 @@
-# language toolchains: asdf (erlang/elixir), ghcup (haskell), opam (ocaml)
+# language toolchains: ghcup (haskell); with --extras: asdf (erlang/elixir), opam (ocaml)
 
 zshrc_before="$(zshrc_snapshot)"
 
-# asdf: pinned to the 0.14 shell version that .zshrc sources (asdf.sh).
-if [[ ! -f "$HOME/.asdf/asdf.sh" ]]; then
+# asdf (packages/asdf-extras.txt, with --extras): pinned to the 0.14 shell
+# version that .zshrc sources (asdf.sh). Without entries to install, asdf
+# itself is not cloned either.
+# Read the whole list first: in a `while read` loop, asdf install would eat
+# the remaining lines from stdin and only the first entry would be installed.
+mapfile -t entries < <(packages asdf)
+if ((${#entries[@]})) && [[ ! -f "$HOME/.asdf/asdf.sh" ]]; then
   run git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf" --branch v0.14.0
 fi
-if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
+if ((${#entries[@]})) && [[ -f "$HOME/.asdf/asdf.sh" ]]; then
   # shellcheck source=/dev/null
   source "$HOME/.asdf/asdf.sh"
-  # Read the whole list first: in a `while read` loop, asdf install would eat
-  # the remaining lines from stdin and only the first entry would be installed.
-  mapfile -t entries < <(read_list asdf)
   for entry in "${entries[@]}"; do
     read -r plugin version <<<"$entry"
     asdf plugin list 2>/dev/null | grep -qx "$plugin" || run asdf plugin add "$plugin"

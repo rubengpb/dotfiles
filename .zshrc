@@ -108,9 +108,9 @@ alias j='just'
 [ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
 eval "$(zoxide init --cmd cd zsh)"
 
-# asdf
-. "$HOME/.asdf/asdf.sh"
-. "$HOME/.asdf/completions/asdf.bash"
+# asdf (only with setup/bootstrap.sh --extras)
+[ -f "$HOME/.asdf/asdf.sh" ] && . "$HOME/.asdf/asdf.sh"
+[ -f "$HOME/.asdf/completions/asdf.bash" ] && . "$HOME/.asdf/completions/asdf.bash"
 
 # Paths
 export PATH="$PATH:$HOME/.local/bin"

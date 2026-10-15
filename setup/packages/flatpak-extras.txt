@@ -1,4 +1,6 @@
 # Occasional Flatpak apps: only installed with `bootstrap.sh --extras`.
 
+com.brave.Browser
 com.google.AndroidStudio
+org.kde.okular
 org.virt_manager.virt-manager

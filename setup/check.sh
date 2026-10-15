@@ -100,7 +100,7 @@ if [[ -f "$HOME/.asdf/asdf.sh" ]]; then
     elif ! grep -qxF "$version" <<<"$(asdf list all "$plugin" 2>/dev/null </dev/null)"; then
       fail "asdf: $plugin $version does not exist"
     fi
-  done < <(read_list asdf)
+  done < <(packages asdf)
   passed "checked"
 fi
 
