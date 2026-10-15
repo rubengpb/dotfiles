@@ -41,7 +41,7 @@ tile-0-0=['q']
 [tophat]
 cpu-show-cores=true
 mem-abs-units=true
-meter-fg-color='rgb(153,193,241)'
+meter-fg-color='rgb(154,153,150)'
 mount-to-monitor='/'
 show-disk=true
 use-system-accent=false
