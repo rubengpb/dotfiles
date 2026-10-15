@@ -20,13 +20,16 @@ for uuid in "${uuids[@]}"; do
 done
 
 # `gnome-extensions enable` fails for an extension the running shell has not
-# loaded yet (Wayland: until the next login), so edit the list directly.
+# loaded yet (Wayland: until the next login), so edit the list directly. The
+# list is set to exactly packages/gnome-extensions.txt: Fedora enables
+# background-logo by default, and a GNOME Classic login leaves its four
+# extensions (apps-menu, places-menu, window-list...) enabled in the session.
 current="$(gsettings get org.gnome.shell enabled-extensions)"
 new="$(python3 -I - "$current" "${uuids[@]}" <<'PY'
 import ast, sys
 current = ast.literal_eval(sys.argv[1].removeprefix("@as "))
-added = [u for u in sys.argv[2:] if u not in current]
-print(str(current + added) if added else "")
+wanted = sys.argv[2:]
+print(str(wanted) if sorted(current) != sorted(wanted) else "")
 PY
 )"
 if [[ -n "$new" ]]; then
