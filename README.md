@@ -22,7 +22,7 @@ dotfiles/
 │   └── zathura/          PDF viewer
 ├── .claude/              Claude Code visual settings (TUI, status line, keys)
 ├── .local/share/gnome-shell/extensions/
-│   └── notification-keys@rgpb/   own GNOME extension: Super+N focuses notifications
+│   └── notification-keys@rgpb/   own GNOME extension: Super+N focuses notifications, Shift+Delete clears the tray
 ├── .zshrc  .p10k.zsh     shell and prompt
 ├── .gitconfig  .npmrc    git and npm
 ├── wallpapers/           GNOME background (linked as ~/wallpapers)
