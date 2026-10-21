@@ -20,11 +20,14 @@ map l scroll right
 map gg scroll top
 map G  scroll bottom
 
-map ^  scroll half-up
-map +  scroll half-down
+map <C-u> scroll half-up
+map <C-d> scroll half-down
 
-map H  navigate previous           # Documento anterior en historial
-map L  navigate next               # Documento siguiente en historial
+map <C-o> jumplist backward        # Salto anterior (como Vim)
+map <C-i> jumplist forward         # Salto siguiente (como Vim)
+
+map H navigate previous           # Página anterior
+map L navigate next               # Página siguiente
 
 # ==============================
 # Zoom
