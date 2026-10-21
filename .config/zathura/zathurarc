@@ -46,14 +46,14 @@ map N search previous
 # Marcadores estilo Vim
 # ==============================
 map m  mark_add
-map '  mark_evaluate
+map "'" mark_evaluate
 
 # ==============================
 # Varias
 # ==============================
 set synctex true                   # Sincronización con LaTeX (inverse search)
 map <C-r> reload                   # Recargar PDF
-map <C-f> fullscreen               # Pantalla completa
+map <C-f> toggle_fullscreen        # Pantalla completa
 map <C-q> quit                     # Salir rápido
 
 set selection-clipboard clipboard
