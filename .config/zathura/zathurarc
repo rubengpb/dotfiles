@@ -56,6 +56,7 @@ map "'" mark_evaluate
 # ==============================
 set synctex true                   # Sincronización con LaTeX (inverse search)
 map <C-r> reload                   # Recargar PDF
+map <C-l> recolor                  # Alternar modo oscuro
 map <C-f> toggle_fullscreen        # Pantalla completa
 map <C-q> quit                     # Salir rápido
 
