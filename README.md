@@ -1,12 +1,14 @@
 # dotfiles
 
-This repo contain my own configuration.
+This repo contains my own configuration.
 
 # 1. Repo structure
 
 The repo mirrors `$HOME`: `stow .` links every file to the same path under `~`
 (e.g. `.config/nvim/` → `~/.config/nvim/`). Folders listed in
-`.stow-local-ignore` are not linked.
+`.stow-local-ignore` are not linked. Everything else is linked on every
+machine, also the configs of desktops a machine does not run: they just sit
+unused there.
 
 ```
 dotfiles/
@@ -14,12 +16,19 @@ dotfiles/
 │   ├── alacritty/        terminal
 │   ├── fontconfig/       emoji fallback for the terminal font
 │   ├── herdr/            terminal workspace manager for AI agents
-│   ├── i3/               i3 window manager
 │   ├── nvim/             Neovim (based on kickstart.nvim)
+│   ├── nvimexample/      sandbox Neovim config (run it with `nvimx`)
 │   ├── ruff/             Python linter
-│   ├── tmux/             tmux + TPM (git submodule)
+│   ├── tmux/             tmux + TPM (TPM's code is kept in this repo)
 │   ├── tridactyl/        vim keys for Zen Browser
-│   └── zathura/          PDF viewer
+│   ├── zathura/          PDF viewer
+│   │
+│   │   other desktops (setup/ only targets Fedora + GNOME):
+│   ├── hypr/             Hyprland
+│   ├── waybar/           status bar (Hyprland)
+│   ├── wofi/             app launcher (Hyprland)
+│   ├── waypaper/         wallpaper picker (Hyprland)
+│   └── i3/               i3 window manager
 ├── .claude/              Claude Code visual settings (TUI, status line, keys)
 ├── .local/share/gnome-shell/extensions/
 │   └── notification-keys@rgpb/   own GNOME extension: Super+N focuses notifications, Shift+Delete clears the tray
@@ -128,7 +137,7 @@ Some steps need an earlier one to have run at least once:
 | Step | Needs |
 |---|---|
 | `dotfiles` | `dnf` (stow) |
-| `terminal` | `dnf` (zsh, tmux), `dotfiles` (TPM submodule) |
+| `terminal` | `dnf` (zsh, tmux), `dotfiles` (`tmux.conf`, which TPM reads) |
 | `user-tools` | `dnf` (npm, jq), `dotfiles` (`.npmrc`, `.claude/tui.json`) |
 | `gnome` | `dnf` (jq), `dotfiles` (notification-keys extension) |
 | `home` | `dnf` (gh) and `gh auth login` |
