@@ -24,7 +24,7 @@ translate=true
 [background]
 picture-options='zoom'
 picture-uri='file:///home/rgpb/dotfiles/wallpapers/wallpaper-toro.png'
-picture-uri-dark='file:///home/rgpb/dotfiles/wallpapers/wallpaper-toro-dark.png.png'
+picture-uri-dark='file:///home/rgpb/dotfiles/wallpapers/wallpaper-toro-dark.png'
 
 [break-reminders/eyesight]
 play-sound=true
