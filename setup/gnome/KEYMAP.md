@@ -8,12 +8,13 @@ keys. Check this file before binding anything system-wide.
 |---|---|
 | `Super` | GNOME: windows, workspaces, apps, system |
 | `Alt+Tab`, `Alt+Esc`, `Alt+<`, `Alt+º` | GNOME switchers |
-| any other `Alt` | applications (Zen's layer: [`zen/KEYMAP.md`](../../zen/KEYMAP.md)) |
+| any other `Alt` (but the [legacy keys](#legacy-keys)) | applications (Zen's layer: [`zen/KEYMAP.md`](../../zen/KEYMAP.md)) |
 | `Ctrl`, `Ctrl+Shift`, `Ctrl+Alt` | applications |
 
 GNOME keeps only three `Ctrl` keys: `Ctrl+Shift+Esc` system monitor,
-`Ctrl+Alt+Del` log out, `Ctrl+Alt+F1…F12` text consoles. The old `Alt+F2`,
-`Alt+F7`/`F8`, `Alt+space` and the `Print` keys stay as GNOME ships them.
+`Ctrl+Alt+Del` log out, `Ctrl+Alt+F1…F12` text consoles. Its old `Alt+F…`,
+`Alt+space` and `Print` keys stay as GNOME ships them (see
+[Legacy keys](#legacy-keys)).
 
 ## Shortcuts
 
@@ -68,6 +69,19 @@ Each press opens a new window.
 | `Ctrl+Alt+F1…F12` | text console (back to the desktop: the one the session runs on, usually `F2`) |
 
 The session dialogs cancel with `Esc` and confirm themselves after 60 s.
+
+### Legacy keys
+Kept as GNOME ships them, outside the `Super` layer: apps cannot use these.
+
+| Keys | Action |
+|---|---|
+| `Alt+F2` | run a command |
+| `Alt+F6` (`+Shift`: back) | next window of the same app, no switcher |
+| `Alt+F7` `Alt+F8` | move / resize the window with the keyboard |
+| `Alt+F10` | maximize / restore |
+| `Alt+space` | window menu |
+| `Print` `Shift+Print` `Alt+Print` | screenshot UI / whole screen / window |
+| `Alt`+volume keys | change the volume without the feedback sound |
 
 Known clash, left as is: `Super+o` is also rotation lock (the workspace wins).
 
