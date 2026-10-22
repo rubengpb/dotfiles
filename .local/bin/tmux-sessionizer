@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # One tmux session per project: switch to it, creating it on first use.
 #   tmux-sessionizer           pick a project with fzf
-#   tmux-sessionizer <name>    jump straight to a project (aura, personal, tfg, dotfiles)
+#   tmux-sessionizer <name>    jump straight to a project (aura, personal, tfg, normal, dotfiles)
 # A project can define its layout in an executable .tmux-sessionizer at its root;
 # it runs inside the new session's first window.
 
