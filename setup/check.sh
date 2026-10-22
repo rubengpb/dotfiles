@@ -21,7 +21,8 @@ passed() { if ((errors == section_errors)); then ok "$1"; fi; }
 http_code() { curl -fsSL -o /dev/null -w '%{http_code}' --max-time 20 "$1" 2>/dev/null || true; }
 
 section "scripts: syntax"
-for f in "$SETUP"/*.sh "$SETUP"/steps/*.sh "$SETUP"/gnome/*.sh "$DOTFILES"/scripts/*.sh; do
+for f in "$SETUP"/*.sh "$SETUP"/steps/*.sh "$SETUP"/gnome/*.sh "$DOTFILES"/scripts/*.sh \
+  "$DOTFILES"/.claude/statusline.sh "$DOTFILES"/.local/bin/tmux-sessionizer "$DOTFILES"/wallpapers/*.sh; do
   bash -n "$f" 2>/dev/null || fail "syntax error in ${f#"$DOTFILES"/}"
 done
 passed "syntax"
