@@ -78,8 +78,9 @@ refresh_usage() {
   tok=$(jq -r '.claudeAiOauth.accessToken // empty' ~/.claude/.credentials.json 2>/dev/null)
   [ -z "$tok" ] && return
   tmp=$(mktemp)
-  if curl -sf -m 5 https://api.anthropic.com/api/oauth/usage \
-       -H "Authorization: Bearer $tok" -H "anthropic-beta: oauth-2025-04-20" >"$tmp" \
+  # The token reaches curl through stdin (printf is a builtin), never in argv: ps cannot see it.
+  if printf 'Authorization: Bearer %s\n' "$tok" |
+       curl -sf -m 5 -H @- -H "anthropic-beta: oauth-2025-04-20" https://api.anthropic.com/api/oauth/usage >"$tmp" \
      && jq -e .limits "$tmp" >/dev/null 2>&1; then
     mkdir -p "${usage_cache%/*}" && mv "$tmp" "$usage_cache"
   else
