@@ -111,9 +111,16 @@ In a text field (insert mode) these keep their usual meaning.
 | `Ctrl+v` | next key goes to the site | paste | (fine in text fields) |
 | `Ctrl+e` `Ctrl+y` | scroll lines | — | — |
 
-### Known overlap inside Zen
-`Ctrl+Shift+K` is both "close all unpinned tabs" (Zen) and the web console
-(devtools). Prefer `F12` for devtools.
+### Known overlaps inside Zen
+Zen's shortcut list gives three keys two jobs each:
+
+| Keys | Jobs |
+|---|---|
+| `Ctrl+Shift+K` | close all unpinned tabs (Zen) / web console |
+| `Ctrl+Shift+W` | close the window / DOM panel |
+| `Ctrl+Shift+Z` | redo / debugger |
+
+Prefer `F12` for devtools and pick the panel from there.
 
 ## Habits worth building
 

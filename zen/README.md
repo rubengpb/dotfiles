@@ -19,10 +19,10 @@ generated CSS into `chrome/` and it must not land in this repo.
 
 ```sh
 # 1. Zen (official tarball installer, no root)
-bash <(curl -s https://updates.zen-browser.app/install.sh)
+bash <(curl -fsSL https://updates.zen-browser.app/install.sh)
 # 2. Open Zen once and close it: creates the profile.
 # 3. Tridactyl native messenger (reads tridactylrc; per machine, not in git)
-curl -fsSL https://raw.githubusercontent.com/tridactyl/native_messenger/master/installers/install.sh -o /tmp/trinative.sh && sh /tmp/trinative.sh
+tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/tridactyl/native_messenger/master/installers/install.sh -o "$tmp" && sh "$tmp"; rm -f "$tmp"
 # 4. Config
 cd ~/dotfiles && stow . && scripts/zen-link.sh
 ```
