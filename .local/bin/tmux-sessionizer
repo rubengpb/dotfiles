@@ -9,9 +9,10 @@ declare -A projects=(
   [aura]=$HOME/AURA
   [personal]=$HOME/personal
   [tfg]=$HOME/university/tfg-mates/memoria
+  [normal]=$HOME
   [dotfiles]=$HOME/dotfiles
 )
-order=(aura personal tfg dotfiles)
+order=(aura personal tfg normal dotfiles)
 
 name=$1
 if [[ -z $name ]]; then
