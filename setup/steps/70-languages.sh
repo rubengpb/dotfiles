@@ -30,7 +30,7 @@ fi
 if [[ -x "$HOME/.ghcup/bin/ghcup" ]]; then
   ok ghcup
 else
-  run_sh "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 sh"
+  run_installer https://get-ghcup.haskell.org env BOOTSTRAP_HASKELL_NONINTERACTIVE=1 sh
 fi
 
 # opam comes from dnf-extras.txt; .zshrc already loads opam-init when present.

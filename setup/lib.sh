@@ -19,9 +19,24 @@ run() {
   if [[ "$DRY_RUN" == 1 ]]; then printf '    +   %s\n' "$*"; else "$@"; fi
 }
 
-# Same for a snippet that needs a shell (pipes, redirections, <(...)).
+# Same for a snippet that needs a shell (pipes, redirections, <(...)). pipefail:
+# a command failing inside a pipe fails the snippet too.
 run_sh() {
-  if [[ "$DRY_RUN" == 1 ]]; then printf '    +   %s\n' "$1"; else bash -c "$1"; fi
+  if [[ "$DRY_RUN" == 1 ]]; then printf '    +   %s\n' "$1"; else bash -o pipefail -c "$1"; fi
+}
+
+# Runs the installer script at URL $1 with the command that follows, which reads
+# the script on stdin (e.g. sh -s -- --yes), like `curl URL | command` would.
+# Downloaded in full first: piped straight in, a failed download runs an empty
+# script that "succeeds" and a dropped connection runs half a script.
+run_installer() {
+  local url="$1" tmp rc=0
+  shift
+  if [[ "$DRY_RUN" == 1 ]]; then printf '    +   curl %s | %s\n' "$url" "$*"; return; fi
+  tmp="$(mktemp)"
+  { curl --proto '=https' --tlsv1.2 -fsSL "$url" -o "$tmp" && "$@" <"$tmp"; } || rc=$?
+  rm -f "$tmp"
+  return "$rc"
 }
 
 # GNOME settings kept in setup/gnome/<file>.dconf: "dconf-path file". save.sh

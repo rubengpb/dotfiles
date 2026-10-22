@@ -16,7 +16,9 @@ for uuid in "${uuids[@]}"; do
     warn "$uuid: not on extensions.gnome.org for GNOME $shell_version"
     continue
   fi
-  run_sh "zip=\"\$(mktemp --suffix=.zip)\" && curl -fsSL -o \"\$zip\" 'https://extensions.gnome.org$url' && gnome-extensions install --force \"\$zip\"; rm -f \"\$zip\""
+  # rc: the exit code of the install, not of the rm that cleans up after it.
+  run_sh "zip=\"\$(mktemp --suffix=.zip)\" && curl -fsSL -o \"\$zip\" 'https://extensions.gnome.org$url' && gnome-extensions install --force \"\$zip\"; rc=\$?; rm -f \"\$zip\"; exit \$rc" ||
+    warn "$uuid: download or install failed"
 done
 
 # `gnome-extensions enable` fails for an extension the running shell has not

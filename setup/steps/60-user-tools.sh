@@ -2,28 +2,37 @@
 
 zshrc_before="$(zshrc_snapshot)"
 
-# $1 = command that proves it is installed, $2 = install snippet
+# $1 = command that proves it is installed, $2 = installer URL, then the
+# command that runs the installer from stdin (see run_installer in lib.sh).
 install_tool() {
-  if have "$1"; then ok "$1"; else log "installing $1"; run_sh "$2"; fi
+  local cmd="$1"
+  shift
+  if have "$cmd"; then ok "$cmd"; return; fi
+  log "installing $cmd"
+  run_installer "$@"
+  if [[ "$DRY_RUN" != 1 ]] && ! have "$cmd"; then
+    warn "$cmd: the installer finished but $cmd is not in PATH"
+    return 1
+  fi
 }
 
-install_tool claude   'curl -fsSL https://claude.ai/install.sh | bash'
-install_tool opencode 'curl -fsSL https://opencode.ai/install | bash -s -- --no-modify-path'
-install_tool herdr    'curl -fsSL https://herdr.dev/install.sh | sh'
-install_tool zen      'bash <(curl -fsSL https://updates.zen-browser.app/install.sh)'
+install_tool claude   https://claude.ai/install.sh bash
+install_tool opencode https://opencode.ai/install bash -s -- --no-modify-path
+install_tool herdr    https://herdr.dev/install.sh sh
+install_tool zen      https://updates.zen-browser.app/install.sh bash
 
 # Occasional CLIs: only with --extras.
 if [[ "$EXTRAS" == 1 ]]; then
   # The installer always rewrites the shell rc of $SHELL; with sh it skips that
   # (.zshrc already loads ~/.railway/env).
-  install_tool railway  'curl -fsSL https://railway.com/install.sh | SHELL=/bin/sh sh -s -- --yes'
+  install_tool railway  https://railway.com/install.sh env SHELL=/bin/sh sh -s -- --yes
 fi
 
 # Tridactyl reads tridactylrc through its native messenger (see zen/README.md).
 if [[ -x "$HOME/.local/share/tridactyl/native_main" ]]; then
   ok "tridactyl native messenger"
 else
-  run_sh 'tmp="$(mktemp)" && curl -fsSL https://raw.githubusercontent.com/tridactyl/native_messenger/master/installers/install.sh -o "$tmp" && sh "$tmp"; rm -f "$tmp"'
+  run_installer https://raw.githubusercontent.com/tridactyl/native_messenger/master/installers/install.sh sh -s
 fi
 
 check_zshrc_untouched "$zshrc_before"
