@@ -45,7 +45,7 @@ setup/
 ├── lib.sh                helpers shared by the scripts
 ├── steps/                one file per step, run in numeric order
 ├── packages/             what to install: plain lists, one item per line
-└── gnome/                GNOME settings (dconf dumps) + save.sh
+└── gnome/                GNOME settings (dconf dumps) + save.sh, KEYMAP.md (shortcuts)
 ```
 
 Every step checks what is already there and only does what is missing, so any

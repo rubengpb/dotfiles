@@ -2,12 +2,10 @@
 
 One rule: **each modifier belongs to one owner**. A new shortcut goes in its
 owner's layer, never in another's; check this file before binding anything.
+The system layers (GNOME) are in [`setup/gnome/KEYMAP.md`](../setup/gnome/KEYMAP.md).
 
 | Layer | Owner | Examples |
 |---|---|---|
-| `Super` | GNOME: windows, workspaces, apps | `Super+c` close, `Super+u/i/o/k/l` workspaces |
-| `Ctrl+Shift` | GNOME system actions | `s` settings, `h` home, `w` **reboot**, `q` **shutdown**, `b` browser, `Esc` monitor |
-| `Ctrl+Alt` | GNOME launchers and arrows | `t`/`a` terminals, `←/→` workspaces |
 | `Ctrl` | Browser standard (same in every browser) | `Ctrl+T/W/L/F/R/Tab/Q` |
 | `Alt` | **Zen** (custom bindings go here) | `Alt+h/l` spaces, `Alt+n` new space, `Alt+c` compact, `Alt+v/-/g/x` split |
 | none | **Tridactyl**, inside web pages | `f`, `/`, `J/K`, `o` |
@@ -17,24 +15,6 @@ Mechanics behind it:
   so Alt is never eaten by the hidden menu bar.
 - `keymap.json`: Zen shortcut overrides, applied by `scripts/zen-link.sh`.
 - `.config/tridactyl/tridactylrc`: in-page keys.
-
-## Conflicts found (2026-10-09)
-
-GNOME grabs these before Zen sees them, so the Zen action is unreachable:
-
-| Keys | GNOME | Zen action lost | Resolution |
-|---|---|---|---|
-| `Ctrl+Alt+←/→` | switch workspace | switch space | Zen moved to `Alt+h/l` |
-| `Ctrl+Shift+W` | **reboot** | close window / DOM devtool | use `Ctrl+Q` or `Super+c` (see below) |
-| `Ctrl+Shift+S` | settings | screenshot | Tridactyl / GNOME `Print` |
-| `Ctrl+Shift+H` | home folder | history library | `Ctrl+H` (history sidebar) |
-| `Ctrl+Shift+B` | browser | bookmarks toolbar | not used (minimal UI) |
-
-Pre-existing GNOME clashes (not browser related, untouched): `Super+o` is both
-workspace 3 and rotation lock; `Super+w` is both switcher and space-bar's menu.
-
-⚠️ Muscle memory from other browsers: `Ctrl+Shift+W` / `Ctrl+Shift+Q` reboot / shut
-down this machine. Consider moving those two GNOME actions to the `Super` layer.
 
 ## Cheat sheet
 
@@ -103,11 +83,10 @@ down this machine. Consider moving those two GNOME actions to the `Super` layer.
 | `Alt+v` `Alt+-` `Alt+g` | split vertical / horizontal / grid |
 | `Alt+x` | unsplit |
 
-### Windows (browser standard + GNOME)
+### Windows
 | Keys | Action |
 |---|---|
 | `Ctrl+N` | new window (`Ctrl+Shift+P` private) |
-| `Alt+Tab` / `Super` | switch windows / overview |
 | `Ctrl+Q` | quit Zen |
 
 ### Text fields and escape hatches
@@ -144,7 +123,7 @@ In a text field (insert mode) these keep their usual meaning.
 4. One space per context (work, personal, study) and `Alt+h/l` between them.
 5. Close tabs aggressively (`d`); `u` brings back a mistake.
 6. Learn one new key per day from `:help`, add it here when it sticks.
-7. New shortcut? Pick its layer from the table above first; never bind on
-   `Super`, `Ctrl+Shift` or a GNOME `Ctrl+Alt` key.
+7. New shortcut? Pick its layer from the table above first; Zen's go on `Alt`,
+   never on `Super` (GNOME's).
 8. Sites with their own keyboard shortcuts (Gmail, GitHub): `Shift+Insert`
    instead of fighting them.
