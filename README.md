@@ -77,7 +77,7 @@ Files in `packages/` (the "Reads" column):
 On a new Fedora machine:
 
 ```sh
-git clone --recurse-submodules https://github.com/helarteDeProgrmar/dotfiles.git ~/dotfiles
+git clone --recurse-submodules https://github.com/rubengpb/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 setup/bootstrap.sh --dry-run    # optional: see what it would do
 setup/bootstrap.sh              # add --extras for the occasional tools

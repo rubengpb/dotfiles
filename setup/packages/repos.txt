@@ -1,4 +1,4 @@
 # GitHub repos to clone: owner/name  destination
 
-helarteDeProgrmar/daily-work  ~/personal/daily-work
-helarteDeProgrmar/learning    ~/personal/learning
+rubengpb/daily-work  ~/personal/daily-work
+rubengpb/learning    ~/personal/learning
