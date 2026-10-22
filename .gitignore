@@ -1,0 +1,24 @@
+.config/herdr/*
+!.config/herdr/config.toml
+
+# Safety net: browser profile data and local secrets never belong in dotfiles.
+*.sqlite
+*.sqlite-*
+*.db
+*.mozlz4
+*.jsonlz4
+*.lz4
+prefs.js
+sessionstore*
+.env
+.env.*
+
+# Apps write their own data next to these stowed files: only ours are tracked.
+.claude/*
+!.claude/keybindings.json
+!.claude/statusline.sh
+!.claude/tui.json
+.local/share/gnome-shell/*
+!.local/share/gnome-shell/extensions/
+.local/share/gnome-shell/extensions/*
+!.local/share/gnome-shell/extensions/notification-keys@rgpb/

@@ -1,0 +1,58 @@
+" Tridactyl config — single source of truth, kept in dotfiles.
+" Loaded on every Zen start through the native messenger; reload with :source
+" Do NOT run :mktridactylrc, :setpref, :guiset or :fixamo — they write into
+" this file, user.js or userChrome.css, which are symlinks into the dotfiles repo.
+
+" Start from defaults each time, so a deleted line really disappears.
+sanitise tridactyllocal tridactylsync
+
+" --- Look --------------------------------------------------------------------
+colourscheme rg-catppuccin
+set modeindicator true
+set modeindicatorshowkeys true
+
+" --- Speed -------------------------------------------------------------------
+set smoothscroll false
+set scrollduration 0
+" Hints on the home row; type the label, no Enter needed.
+set hintchars asdfghjkl
+set hintfiltermode simple
+set hintdelay 0
+" Pages cannot steal focus into an input on load: keys stay in normal mode.
+set allowautofocus false
+
+" --- Search ------------------------------------------------------------------
+" :open <keyword> <terms>  e.g.  o gh tridactyl
+set searchengine duckduckgo
+set searchurls.g https://www.google.com/search?q=%s
+set searchurls.gh https://github.com/search?q=%s&type=repositories
+set searchurls.yt https://www.youtube.com/results?search_query=%s
+set searchurls.mdn https://developer.mozilla.org/search?q=%s
+set searchurls.w https://es.wikipedia.org/w/index.php?search=%s
+
+" --- Find in page (vim-style) ------------------------------------------------
+bind / fillcmdline find
+bind ? fillcmdline find --reverse
+bind n findnext --search-from-view
+bind N findnext --search-from-view --reverse
+" Clear the highlight with the default ,<Space> (Esc keeps its normal job).
+
+" --- Tabs: the sidebar is vertical, so J goes down and K goes up -------------
+bind J tabnext
+bind K tabprev
+
+" --- Editing -----------------------------------------------------------------
+" Ctrl+i inside a text field opens it in nvim; save and quit to send it back.
+set editorcmd alacritty --class tridactyl-editor -e nvim %f
+
+" --- Spanish layout: ` and ^ are dead keys, [ ] need AltGr ------------------
+" Jump to mark with ' (as in vim); g0 (default) is the first tab.
+bind ' gobble 1 markjump
+" Next / previous page of a paginated site.
+bind gn followpage next
+bind gp followpage prev
+
+" --- Grammar extensions (see zen/KEYMAP.md) ----------------------------------
+" g = go/tab: gd duplicates the tab (with its history), gx detaches it to a new window.
+bind gd tabduplicate
+bind gx tabdetach

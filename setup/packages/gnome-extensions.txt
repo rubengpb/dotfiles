@@ -1,0 +1,9 @@
+# GNOME Shell extensions (UUID). Downloaded from extensions.gnome.org unless
+# the folder already exists (notification-keys@rgpb comes from this repo via stow).
+
+just-perfection-desktop@just-perfection
+space-bar@luchrioh
+tactile@lundal.io
+tophat@fflewddur.github.io
+switcher@landau.fi
+notification-keys@rgpb

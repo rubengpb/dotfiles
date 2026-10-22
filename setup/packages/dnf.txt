@@ -1,0 +1,70 @@
+# dnf packages installed on every machine. One per line, exact package name.
+# Occasional tools go in dnf-extras.txt (installed with --extras).
+# Packages from third-party repos need the repo in steps/10-repos.sh.
+
+# --- shell & terminal
+zsh
+stow
+tmux
+fzf
+zoxide
+alacritty
+vim-enhanced
+neovim
+tree-sitter-cli       # nvim-treesitter parsers
+ripgrep               # telescope live grep
+xclip
+htop
+fastfetch
+jq                    # scripts/claude-tui.sh, GNOME extension installer
+unzip
+
+# --- git
+git
+git-lfs
+gh
+
+# --- productivity
+just
+task
+timew
+pass
+
+# --- build
+make
+gcc
+gcc-c++
+
+# --- languages (haskell via ghcup: steps/70-languages.sh)
+golang
+nodejs
+nodejs-npm
+python3-pip           # not in a fresh Workstation; packages/pip.txt needs it
+perl                  # ghcup
+gmp-devel             # ghcup
+libffi                # ghcup
+xz                    # ghcup
+tar                   # ghcup
+
+# --- database clients
+postgresql
+valkey-compat-redis   # redis-cli
+
+# --- containers (third-party repo)
+docker-ce
+docker-ce-cli
+containerd.io
+docker-buildx-plugin
+docker-compose-plugin
+
+# --- documents
+latexmk
+zathura
+zathura-pdf-poppler
+graphviz
+ghostscript
+
+# --- desktop
+flameshot
+drawing
+google-android-emoji-fonts

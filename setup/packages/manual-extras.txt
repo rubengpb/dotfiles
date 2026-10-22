@@ -1,0 +1,6 @@
+# Installed from a downloaded .rpm (no repo): bootstrap cannot install these,
+# it only reminds you when one is missing (with --extras).
+# name                 # where it comes from
+
+autofirma              # AutoFirma for Fedora, from the Spanish government e-signature site
+greatspn               # greatspn-3.2-linux.x86_64.rpm

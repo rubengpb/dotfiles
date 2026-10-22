@@ -1,0 +1,7 @@
+# Python packages installed with `pip install --user` (system python3).
+
+uv
+ipykernel
+pymupdf
+PyPDF2
+reportlab

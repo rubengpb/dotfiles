@@ -1,0 +1,63 @@
+# ==============================
+# Apariencia
+# ==============================
+set recolor "true"                # Modo oscuro por defecto
+set recolor-darkcolor "#eeeeee"   # Color del texto en modo oscuro
+set recolor-lightcolor "#111111"  # Fondo en modo oscuro
+set recolor-keephue "true"        # Mantener colores en imágenes
+
+set adjust-open "best-fit"        # Abrir documentos ajustados a la ventana
+set statusbar-home-tilde "true"   # Mostrar ~ en vez de /home/usuario
+
+# ==============================
+# Navegación estilo Vim
+# ==============================
+map j scroll down
+map k scroll up
+map h scroll left
+map l scroll right
+
+map gg scroll top
+map G  scroll bottom
+
+map <C-u> scroll half-up
+map <C-d> scroll half-down
+
+map <C-o> jumplist backward        # Salto anterior (como Vim)
+map <C-i> jumplist forward         # Salto siguiente (como Vim)
+
+map H navigate previous           # Página anterior
+map L navigate next               # Página siguiente
+
+# ==============================
+# Zoom
+# ==============================
+map zi zoom in
+map zo zoom out
+map zz zoom best-fit
+map zf zoom fit-width
+
+# ==============================
+# Búsqueda (estilo Vim)
+# ==============================
+map / search forward
+map ? search backward
+map n search next
+map N search previous
+
+# ==============================
+# Marcadores estilo Vim
+# ==============================
+map m  mark_add
+map "'" mark_evaluate
+
+# ==============================
+# Varias
+# ==============================
+set synctex true                   # Sincronización con LaTeX (inverse search)
+map <C-r> reload                   # Recargar PDF
+map <C-l> recolor                  # Alternar modo oscuro
+map <C-f> toggle_fullscreen        # Pantalla completa
+map <C-q> quit                     # Salir rápido
+
+set selection-clipboard clipboard

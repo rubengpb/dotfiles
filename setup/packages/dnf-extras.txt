@@ -1,0 +1,49 @@
+# Occasional dnf packages: only installed with `bootstrap.sh --extras`.
+
+# --- network & systems
+tailscale             # third-party repo; only on personal machines
+nmap
+telnet
+ftp
+sendmail
+
+# --- OCaml (steps/70-languages.sh runs `opam init` when opam is present)
+ocaml
+ocaml-compiler-libs
+ocaml-findlib
+opam
+m4
+
+# --- erlang/elixir via asdf (steps/70-languages.sh, packages/asdf-extras.txt)
+openssl-devel         # erlang build
+ncurses-devel         # erlang build
+autoconf              # kerl (asdf-erlang)
+automake              # kerl (asdf-erlang)
+
+# --- other languages & tools
+java-25-openjdk-headless   # sdkman (.zshrc) manages other javas on demand
+yarnpkg
+dotnet-sdk-10.0
+z3
+
+# --- build
+cmake
+ninja-build
+clang
+
+# --- shell utilities
+nushell
+rlwrap
+w3m
+
+# --- editors & browsers (third-party repos, added by steps/10-repos.sh)
+code                  # VS Code
+sublime-text
+librewolf
+
+# --- full LaTeX (~4000 packages, several GB)
+texlive-scheme-full
+
+# --- misc
+xorg-x11-server-Xorg
+cowsay

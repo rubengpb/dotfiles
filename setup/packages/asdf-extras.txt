@@ -1,0 +1,7 @@
+# asdf plugin + version, only installed with `bootstrap.sh --extras` (asdf
+# itself is only cloned when this list has entries). No global version is set:
+# projects pick theirs with a .tool-versions file.
+
+erlang 27.3.4.3
+elixir 1.17.3-otp-27
+elixir 1.18.4-otp-28

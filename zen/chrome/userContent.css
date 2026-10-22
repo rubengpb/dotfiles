@@ -1,0 +1,19 @@
+/* Web content and internal pages (about:*).
+ * Only internal pages are styled: websites keep their own design (their dark
+ * theme is requested through user.js).
+ */
+
+@-moz-document url("about:blank"), url("about:newtab"), url("about:home") {
+  html, body {
+    background: #1E1D2F !important;
+  }
+}
+
+/* Tridactyl applies its theme a moment after each page loads; these base
+ * colours (same as .config/tridactyl/themes/rg-catppuccin.css) avoid a flash. */
+:root {
+  --tridactyl-bg: #1E1D2F !important;
+  --tridactyl-fg: #D9E0EE !important;
+  --tridactyl-cmdl-bg: #19182A !important;
+  --tridactyl-cmdl-fg: #D9E0EE !important;
+}

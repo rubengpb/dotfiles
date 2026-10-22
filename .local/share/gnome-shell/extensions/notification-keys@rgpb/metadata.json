@@ -1,0 +1,6 @@
+{
+  "uuid": "notification-keys@rgpb",
+  "name": "Notification Keys",
+  "description": "Super+N focuses the visible notification: Delete dismisses it, Esc keeps it in the tray, Enter opens it. In the tray (Super+V), Shift+Delete clears all notifications.",
+  "shell-version": ["50"]
+}

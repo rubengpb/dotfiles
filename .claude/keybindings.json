@@ -1,0 +1,27 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-keybindings.json",
+  "$docs": "https://code.claude.com/docs/en/keybindings",
+  "bindings": [
+    {
+      "context": "ModelPicker",
+      "bindings": {
+        "h": "modelPicker:decreaseEffort",
+        "l": "modelPicker:increaseEffort"
+      }
+    },
+    {
+      "context": "EffortSlider",
+      "bindings": {
+        "h": "effortSlider:decreaseEffort",
+        "l": "effortSlider:increaseEffort"
+      }
+    },
+    {
+      "context": "Global",
+      "bindings": {
+        "ctrl+x ctrl+t": "app:toggleTerminal",
+        "ctrl+x l": "app:redraw"
+      }
+    }
+  ]
+}

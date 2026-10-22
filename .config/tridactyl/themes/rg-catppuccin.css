@@ -1,0 +1,46 @@
+/* Tridactyl theme matching alacritty's Catppuccin (see zen/chrome/userChrome.css). */
+:root {
+  --rg-base: #1E1D2F;
+  --rg-mantle: #19182A;
+  --rg-surface: #2A2940;
+  --rg-overlay: #6E6C7E;
+  --rg-text: #D9E0EE;
+  --rg-subtext: #988BA2;
+  --rg-accent: #96CDFB;
+  --rg-yellow: #FAE3B0;
+
+  --tridactyl-font-family: "0xProto Nerd Font Mono", monospace;
+  --tridactyl-cmdl-font-family: "0xProto Nerd Font Mono", monospace;
+  --tridactyl-cmplt-font-family: "0xProto Nerd Font Mono", monospace;
+  --tridactyl-hintspan-font-family: "0xProto Nerd Font Mono", monospace;
+
+  --tridactyl-fg: var(--rg-text);
+  --tridactyl-bg: var(--rg-base);
+  --tridactyl-url-fg: var(--rg-accent);
+  --tridactyl-url-bg: var(--rg-base);
+  --tridactyl-highlight-box-bg: var(--rg-surface);
+  --tridactyl-highlight-box-fg: var(--rg-text);
+
+  /* Command line: like nvim's, flat at the bottom. */
+  --tridactyl-cmdl-bg: var(--rg-mantle);
+  --tridactyl-cmdl-fg: var(--rg-text);
+  --tridactyl-cmplt-fg: var(--rg-subtext);
+  --tridactyl-cmplt-bg: var(--rg-base);
+  --tridactyl-cmplt-border-top: 1px solid var(--rg-surface);
+  --tridactyl-header-first-bg: var(--rg-surface);
+  --tridactyl-header-second-bg: var(--rg-surface);
+  --tridactyl-header-third-bg: var(--rg-surface);
+
+  /* Hints: quiet labels, the active one stands out. */
+  --tridactyl-hintspan-fg: var(--rg-base);
+  --tridactyl-hintspan-bg: var(--rg-accent);
+  --tridactyl-hint-bg: rgba(150, 205, 251, 0.12);
+  --tridactyl-hint-outline: 1px solid var(--rg-overlay);
+  --tridactyl-hint-active-fg: var(--rg-base);
+  --tridactyl-hint-active-bg: var(--rg-yellow);
+  --tridactyl-hint-active-outline: 1px solid var(--rg-yellow);
+
+  /* Mode indicator (bottom right). */
+  --tridactyl-of-fg: var(--rg-base);
+  --tridactyl-of-bg: var(--rg-accent);
+}

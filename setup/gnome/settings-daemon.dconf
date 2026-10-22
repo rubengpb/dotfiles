@@ -1,0 +1,35 @@
+[color]
+night-light-enabled=false
+night-light-schedule-automatic=false
+
+[housekeeping]
+donation-reminder-last-shown=int64 1764349722903869
+
+[media-keys]
+control-center=['<Shift><Control>s']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']
+home=['<Shift><Control>h']
+reboot=['<Shift><Control>w']
+screensaver=['<Shift><Super>apostrophe']
+shutdown=['<Shift><Control>q']
+www=['<Shift><Control>b']
+
+[media-keys/custom-keybindings/custom0]
+binding='<Control><Alt>t'
+command='terminal-gnome'
+name='gnome-terminal'
+
+[media-keys/custom-keybindings/custom1]
+binding='<Control><Alt>a'
+command='alacritty'
+name='alacritty'
+
+[media-keys/custom-keybindings/custom2]
+binding='<Shift><Control>Escape'
+command='gnome-system-monitor'
+name='monitor'
+
+[power]
+power-button-action='nothing'
+sleep-inactive-ac-type='nothing'
+sleep-inactive-battery-type='nothing'
