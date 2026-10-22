@@ -107,7 +107,6 @@ alias j='just'
 
 # Shell integrations
 [ -f /usr/share/fzf/shell/key-bindings.zsh ] && source /usr/share/fzf/shell/key-bindings.zsh
-eval "$(zoxide init --cmd cd zsh)"
 
 # asdf (only with setup/bootstrap.sh --extras)
 [ -f "$HOME/.asdf/asdf.sh" ] && . "$HOME/.asdf/asdf.sh"
@@ -155,3 +154,6 @@ export PATH=/home/rgpb/.opencode/bin:$PATH
 
 # railway (setup/ installs it without letting it edit this file)
 [ -f "$HOME/.railway/env" ] && source "$HOME/.railway/env"
+
+# zoxide must be initialized last (its doctor warns otherwise)
+eval "$(zoxide init --cmd cd zsh)"
