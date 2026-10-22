@@ -107,7 +107,7 @@ application-id='org.mozilla.firefox.desktop'
 application-id='org.pwmt.zathura.desktop'
 
 [peripherals/keyboard]
-numlock-state=false
+numlock-state=true
 
 [peripherals/mouse]
 accel-profile='default'
@@ -137,23 +137,35 @@ event-sounds=true
 theme-name='__custom'
 
 [wm/keybindings]
-close=['<Super>c']
+close=['<Super>x']
+cycle-panels=@as []
+cycle-panels-backward=@as []
 maximize=['<Super>r']
 move-to-workspace-1=['<Shift><Super>u']
 move-to-workspace-2=['<Shift><Super>i']
 move-to-workspace-3=['<Shift><Super>o']
 move-to-workspace-4=['<Shift><Super>k']
+move-to-workspace-down=@as []
 move-to-workspace-last=['<Shift><Super>l']
+move-to-workspace-left=['<Super><Shift>Page_Up', '<Super><Shift>KP_Prior', '<Super><Shift><Alt>Left']
+move-to-workspace-right=['<Super><Shift>Page_Down', '<Super><Shift>KP_Next', '<Super><Shift><Alt>Right']
+move-to-workspace-up=@as []
 switch-applications=['<Alt>less']
 switch-applications-backward=['<Shift><Alt>less']
+switch-panels=@as []
+switch-panels-backward=@as []
 switch-to-workspace-1=['<Super>u']
 switch-to-workspace-2=['<Super>i']
 switch-to-workspace-3=['<Super>o']
 switch-to-workspace-4=['<Super>k']
+switch-to-workspace-down=@as []
 switch-to-workspace-last=['<Super>l']
+switch-to-workspace-left=['<Super>Page_Up', '<Super>KP_Prior', '<Super><Alt>Left']
+switch-to-workspace-right=['<Super>Page_Down', '<Super>KP_Next', '<Super><Alt>Right']
+switch-to-workspace-up=@as []
 switch-windows=['<Alt>Tab']
 switch-windows-backward=['<Shift><Alt>Tab']
 
 [wm/preferences]
 num-workspaces=5
-workspace-names=@as []
+workspace-names=['1']

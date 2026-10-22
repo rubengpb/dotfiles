@@ -1,0 +1,4 @@
+[/]
+show-screen-recording-ui=['<Super><Shift>c']
+show-screenshot-ui=['Print', '<Super>c']
+toggle-application-view=@as []

@@ -30,6 +30,7 @@ GNOME_DUMPS=(
   "/org/gnome/desktop/ desktop"
   "/org/gnome/mutter/ mutter"                     # fixed number of workspaces
   "/org/gnome/shell/app-switcher/ app-switcher"   # Alt+Tab: current workspace only
+  "/org/gnome/shell/keybindings/ shell-keybindings"  # Super+c screenshot, Super+a free
   "/org/gnome/shell/extensions/ extensions"
   "/org/gnome/settings-daemon/plugins/ settings-daemon"
   "/org/gnome/system/ system"                     # location services

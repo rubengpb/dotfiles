@@ -6,21 +6,21 @@ night-light-schedule-automatic=false
 donation-reminder-last-shown=int64 1764349722903869
 
 [media-keys]
-control-center=['<Shift><Control>s']
-custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']
-home=['<Shift><Control>h']
-reboot=['<Shift><Control>w']
+control-center=['<Super><Shift>s']
+custom-keybindings=['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/']
+home=['<Super>g']
+reboot=['<Super>w']
 screensaver=['<Shift><Super>apostrophe']
-shutdown=['<Shift><Control>q']
-www=['<Shift><Control>b']
+shutdown=['<Super>q']
+www=@as []
 
 [media-keys/custom-keybindings/custom0]
-binding='<Control><Alt>t'
-command='terminal-gnome'
-name='gnome-terminal'
+binding='<Super><Shift>t'
+command='ptyxis --new-window'
+name='terminal'
 
 [media-keys/custom-keybindings/custom1]
-binding='<Control><Alt>a'
+binding='<Super>a'
 command='alacritty'
 name='alacritty'
 
@@ -28,6 +28,26 @@ name='alacritty'
 binding='<Shift><Control>Escape'
 command='gnome-system-monitor'
 name='monitor'
+
+[media-keys/custom-keybindings/custom3]
+binding='<Super>f'
+command='firefox'
+name='firefox'
+
+[media-keys/custom-keybindings/custom4]
+binding='<Super>d'
+command='flatpak run com.brave.Browser'
+name='brave'
+
+[media-keys/custom-keybindings/custom5]
+binding='<Super>z'
+command='gtk-launch zen'
+name='zen'
+
+[media-keys/custom-keybindings/custom6]
+binding='<Super>minus'
+command="sh -c 'p=/org/gnome/shell/extensions/just-perfection/panel; case $(dconf read $p) in false) v=true;; *) v=false;; esac; dconf write $p $v'"
+name='top-bar'
 
 [power]
 power-button-action='nothing'
