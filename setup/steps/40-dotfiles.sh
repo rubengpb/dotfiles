@@ -6,9 +6,10 @@ run git -C "$DOTFILES" submodule update --init --recursive
 
 # Apps write their own state next to the files we keep in these folders. When
 # a folder does not exist yet, stow links the whole folder to the repo and that
-# state (Claude's credentials, downloaded extensions) lands inside the repo.
-# Created first, they stay real folders with one link per file.
-for d in .claude .local/share/gnome-shell/extensions; do
+# state (Claude's credentials, downloaded extensions, every tool installed in
+# ~/.local/bin) lands inside the repo. Created first, they stay real folders
+# with one link per file.
+for d in .claude .local/bin .local/share/gnome-shell/extensions; do
   if [[ "$(readlink -f "$HOME/$d")" == "$DOTFILES"/* ]]; then
     warn "~/$d is linked as a whole folder into the repo: apps write their data into the repo"
     warn "fix: move the untracked files of $DOTFILES/$d out, delete the link, re-run this step"
