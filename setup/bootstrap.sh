@@ -67,7 +67,9 @@ done
 
 echo
 if ((${#failed[@]})); then
-  warn "failed steps: ${failed[*]} (re-run with: setup/bootstrap.sh ${failed[*]})"
+  rerun="setup/bootstrap.sh"
+  if [[ "$EXTRAS" == 1 ]]; then rerun+=" --extras"; fi
+  warn "failed steps: ${failed[*]} (re-run with: $rerun ${failed[*]})"
   exit 1
 fi
 if [[ "$DRY_RUN" == 1 ]]; then log "done (dry run: nothing changed)"; else log "done"; fi
