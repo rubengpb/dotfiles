@@ -748,6 +748,9 @@ require("lazy").setup({
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+			-- ltex is a heavy JVM (~1 GB) and en-US only: start it on LaTeX, not on text/markdown
+			vim.lsp.config("ltex_plus", { filetypes = { "tex" } })
+
 			require("mason-lspconfig").setup({
 				ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
 				automatic_installation = false,
