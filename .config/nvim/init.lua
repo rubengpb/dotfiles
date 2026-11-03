@@ -191,6 +191,10 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 --  See `:help hlsearch`
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+-- Y copies to the system clipboard (like "+y); use y$ to yank to end of line
+vim.keymap.set({ "n", "v" }, "Y", '"+y', { desc = "Yank to system clipboard" })
+vim.keymap.set("n", "YY", '"+yy', { desc = "Yank line to system clipboard" })
+
 -- Diagnostic keymaps
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
