@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Claude Code status line: model · effort │ dir (branch) │ context usage
+# Claude Code status line: model · effort │ session name │ dir (branch) │ context usage
 input=$(cat)
 [ -n "$CLAUDE_STATUSLINE_DUMP" ] && printf "%s" "$input" > "$CLAUDE_STATUSLINE_DUMP"
 # Extract every field in a single jq call (each extra jq fork costs ~5ms).
@@ -7,6 +7,8 @@ eval "$(jq -r '
   def n: . // "" | tostring;
   @sh "model=\(.model.display_name | n)",
   @sh "model_id=\(.model.id | n)",
+  @sh "sname=\(.session_name | n)",
+  @sh "tpath=\(.transcript_path | n)",
   @sh "dir=\(.workspace.current_dir // .cwd | n)",
   @sh "effort=\((.effort | objects | .level) // (.effort | strings) | n)",
   @sh "pct=\(.context_window.used_percentage | n)",
@@ -19,6 +21,11 @@ printf -v now '%(%s)T' -1
 
 if [ -z "$effort" ] && [ -f ~/.claude/settings.json ]; then
   effort=$(jq -r --arg m "$model_id" '.modelSettings[$m].effortLevel // .effortLevel // empty' ~/.claude/settings.json 2>/dev/null)
+fi
+
+# Session name: stdin field first; if absent, the latest rename recorded in the transcript.
+if [ -z "$sname" ] && [ -f "$tpath" ]; then
+  sname=$(tac "$tpath" | grep -a -m1 '"type":"custom-title"' | jq -r '.customTitle // empty' 2>/dev/null)
 fi
 
 [ -n "$dir" ] && branch=$(git -C "$dir" branch --show-current 2>/dev/null)
@@ -39,9 +46,10 @@ bar() {
 
 k() { [ -n "$1" ] && [ "$1" -gt 0 ] 2>/dev/null && echo "$(( $1 / 1000 ))k"; }
 
-dim=$'\e[2m'; rst=$'\e[0m'; cyan=$'\e[36m'; mag=$'\e[35m'; blue=$'\e[34m'
+dim=$'\e[2m'; rst=$'\e[0m'; cyan=$'\e[36m'; mag=$'\e[35m'; blue=$'\e[34m'; yellow=$'\e[33m'
 out="${cyan}${model}${rst}"
 [ -n "$effort" ] && out+=" ${dim}·${rst} ${mag}${effort}${rst}"
+[ -n "$sname" ] && out+=" ${dim}│${rst} ${yellow}${sname}${rst}"
 out+=" ${dim}│${rst} ${blue}${short_dir}${rst}"
 [ -n "$branch" ] && out+=" ${dim}(${branch})${rst}"
 if [ -n "$pct" ]; then
