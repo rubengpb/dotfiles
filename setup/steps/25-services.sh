@@ -19,6 +19,19 @@ else
   warn "log out and back in to use docker without sudo"
 fi
 
+# Closing the lid never suspends (logind's default is suspend unless an
+# external monitor is attached). Idle suspend is already off in GNOME
+# (gnome/settings-daemon.dconf). logind reloads in place: sessions survive.
+lid_conf=/etc/systemd/logind.conf.d/lid.conf
+lid_want=$'[Login]\nHandleLidSwitch=ignore\nHandleLidSwitchExternalPower=ignore\nHandleLidSwitchDocked=ignore'
+if [[ "$(cat "$lid_conf" 2>/dev/null)" == "$lid_want" ]]; then
+  ok "lid close does not suspend"
+else
+  run sudo mkdir -p "${lid_conf%/*}"
+  run_sh "printf '%s\n' '$lid_want' | sudo tee '$lid_conf' >/dev/null"
+  run sudo systemctl reload systemd-logind
+fi
+
 if have tailscale && ! tailscale status >/dev/null 2>&1; then
   warn "tailscale is not logged in: run 'sudo tailscale up'"
 fi
