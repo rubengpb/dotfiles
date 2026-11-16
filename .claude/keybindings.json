@@ -22,6 +22,15 @@
         "ctrl+x ctrl+t": "app:toggleTerminal",
         "ctrl+x l": "app:redraw"
       }
+    },
+    {
+      "context": "Scroll",
+      "bindings": {
+        "alt+u": "scroll:halfPageUp",
+        "alt+d": "scroll:halfPageDown",
+        "alt+k": "scroll:lineUp",
+        "alt+j": "scroll:lineDown"
+      }
     }
   ]
 }
